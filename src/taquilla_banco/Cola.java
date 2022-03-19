@@ -2,16 +2,6 @@ package taquilla_banco;
 
 public class Cola {
     
-    class nodo {
-    
-    Cliente cliente;
-    nodo next;
-    
-    public void nodo(Cliente in){
-        this.cliente = in;
-    }
-    
-    }
     private nodo Front;
     private nodo Rear;
     
@@ -47,6 +37,15 @@ public class Cola {
             return aux;
         }else{
             return null;
+        }
+    }
+    
+    public void  enqueueClientes(String dato){
+        String[] clientes = dato.split("\n");
+        String[] clientesdatos;
+        for (String i:clientes){
+            clientesdatos = i.split(" ");
+            enqueue(new nodo(new Cliente(clientesdatos[0],clientesdatos[1],Integer.parseInt(clientesdatos[2]),clientesdatos[3],clientesdatos[4])));
         }
     }
     

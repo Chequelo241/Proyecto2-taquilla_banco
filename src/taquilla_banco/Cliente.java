@@ -9,7 +9,7 @@ class Cliente {
     private String discapacidad;
     private String operacion;      
     
-    public void Cliente(String nom,String ape,int edad,String disc,String operacion){
+    public Cliente(String nom,String ape,int edad,String disc,String operacion){
         
         this.nombre = nom;
         this.apellido = ape;
