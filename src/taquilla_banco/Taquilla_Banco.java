@@ -20,10 +20,9 @@ public class Taquilla_Banco {
         String Opc;
         Opc="";
         
-        c.enqueueClientes("C:\\Users\\Usuario\\Documents\\Proyectos-Programas\\Clientes.txt");
+        c.enqueueClientes("Clientes.in");
         
-        c.dequeuePrint("C:\\Users\\Usuario\\Documents\\Proyectos-Programas\\ClientesAtendidos.txt");
-        
+        c.dequeuePrint("ClientesAtendidos.in");
 
          /*   switch(Opc){
                 
