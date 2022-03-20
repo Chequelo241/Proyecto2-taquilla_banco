@@ -5,29 +5,32 @@ class Cliente {
     
     private String nombre;
     private String apellido;
-    private int edad;
-    private String discapacidad;
+    private Boolean prioridad;
     private String operacion;      
     
-    public Cliente(String nom,String ape,int edad,String disc,String operacion){
+    public Cliente(String nom,String ape,boolean pri,String operacion){
         
         this.nombre = nom;
         this.apellido = ape;
-        this.edad = edad;
-        this.discapacidad = disc;
+        this.prioridad = pri;
         this.operacion = operacion;
     }
     
-    String getName(){
+    String getDat(){
+        return this.nombre+" "+this.apellido+" "+this.operacion;
+    }
+    
+   String getName(){
         return this.nombre+" "+this.apellido;
     }
     
-    int getAge(){
-        return this.edad;
-    }
-    
-    String getDiscapacidad(){
-        return this.discapacidad;
+    String getPrioridad(){
+        if (this.prioridad){
+           return "Sí";    
+        }else{
+            return "No";
+        }
+        
     }
     
     String getOperacion(){

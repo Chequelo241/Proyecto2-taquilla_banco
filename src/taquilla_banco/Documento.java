@@ -3,7 +3,9 @@ package taquilla_banco;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Documento {
         
@@ -16,9 +18,28 @@ public class Documento {
         String datos = linea;
         
         while ((linea = br.readLine()) != null) {
-            datos += " " + linea;
+            datos +=  "\n" + linea;
         }
         return datos;
     }
+     
+     static void escribir(String Dato, String direccion) throws IOException{
+         
+         FileWriter archivo = null;
+         PrintWriter escritor = null;
+         
+         try{
+             archivo = new FileWriter(direccion);
+             escritor = new PrintWriter(archivo);
+             
+             escritor.println(Dato);
+             
+         } catch (Exception e){
+             System.out.println("Error: " + e.getMessage());
+         } finally{
+             archivo.close();
+             
+         }
+     }
     
 }

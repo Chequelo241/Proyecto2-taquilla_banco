@@ -6,30 +6,26 @@
 
 package taquilla_banco;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 
 public class Taquilla_Banco {
     static  Scanner sc = new Scanner(System.in);
    
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         
+        String lista;
         Cola c = new Cola();
         String Opc;
         Opc="";
         
-        do{
-            System.out.println(" ");
-            System.out.println("\t\t---BIENVENIDO---");
-            System.out.println(" ");
-            System.out.println("1. Mostrar clientes en la cola");
-            System.out.println("2. Agregar clientes a la cola");
-            System.out.println("0. Salir.");
-            System.out.println(" ");
-            System.out.print("Indique una opcion: ");
-            Opc= sc.nextLine();
-            
-            switch(Opc){
+        c.enqueueClientes("C:\\Users\\Usuario\\Documents\\Proyectos-Programas\\Clientes.txt");
+        
+        c.dequeuePrint("C:\\Users\\Usuario\\Documents\\Proyectos-Programas\\ClientesAtendidos.txt");
+        
+
+         /*   switch(Opc){
                 
                 case "1":
                     
@@ -43,7 +39,7 @@ public class Taquilla_Banco {
             }
             
             
-        }while(!Opc.equals("0"));
+        }while(!Opc.equals("0"));*/
         
     }
     

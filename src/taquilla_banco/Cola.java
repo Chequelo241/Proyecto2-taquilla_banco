@@ -1,9 +1,11 @@
 package taquilla_banco;
 
+import java.io.IOException;
+
 public class Cola {
     
-    private nodo Front;
-    private nodo Rear;
+    private nodo Front = null;
+    private nodo Rear = null;
     
     boolean isEmpty(){
         return Front == null;
@@ -23,30 +25,37 @@ public class Cola {
             this.Front = in;
             this.Rear = in;
         }else{
-            this.Rear = in;
+            this.Rear.next = in;
             this.Rear = this.Rear.next;
         }
         
     }
     
-    nodo dequeue(){
-        if (!this.isEmpty()){
+    String dequeue(){
+        if (this.Front == null){
+            return null;
+        }else{
             nodo aux = this.Front;
             this.Front = this.Front.next;
             aux.next = null;
-            return aux;
-        }else{
-            return null;
+            return aux.cliente.getName();
         }
     }
     
-    public void  enqueueClientes(String dato){
-        String[] clientes = dato.split("\n");
+    public void  enqueueClientes(String fuente) throws IOException{
+        String[] clientes = Documento.leer(fuente).split("\n");
         String[] clientesdatos;
         for (String i:clientes){
             clientesdatos = i.split(" ");
-            enqueue(new nodo(new Cliente(clientesdatos[0],clientesdatos[1],Integer.parseInt(clientesdatos[2]),clientesdatos[3],clientesdatos[4])));
+            enqueue(new nodo(new Cliente(clientesdatos[0],clientesdatos[1],clientesdatos[2].equalsIgnoreCase("Si"),clientesdatos[3])));
         }
+    }
+    
+    public void dequeuePrint(String direccion) throws IOException{
+        String doc = dequeue();
+        while(!isEmpty()){
+            doc +="\n"+dequeue();}
+        Documento.escribir(doc, direccion);
     }
     
 }
