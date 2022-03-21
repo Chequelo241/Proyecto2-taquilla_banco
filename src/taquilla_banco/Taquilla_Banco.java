@@ -1,11 +1,9 @@
 /* 
-    Ezequiel Rodiguez C.I 30.008.226
-    Albert 
-    luis 
+    EZEQUIEL RODRIGUEZ C.I 30.008.226
+    ALBERT HENRIQUEZ C.I
+    LUIS SUAREZ C.I 
 */
-
 package taquilla_banco;
-
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -19,10 +17,24 @@ public class Taquilla_Banco {
         Cola c = new Cola();
         String Opc;
         Opc="";
+       c.enqueueClientes("Clientes.in");
+       System.out.println(c.Prioridad().cliente.getName());
+       System.out.println(c.dequeue().cliente.getName());
+       
+               
+               
+   
+      
+       
+        /*do{
+            
+            c.printf();
+            System.out.println("");
+            System.out.println("\tsiguiente cliente? S/N");
+            Opc= sc.nextLine();
+        }while(!Opc.equals("N"));*/
+       
         
-        c.enqueueClientes("Clientes.in");
-        
-        c.dequeuePrint("ClientesAtendidos.in");
 
          /*   switch(Opc){
                 

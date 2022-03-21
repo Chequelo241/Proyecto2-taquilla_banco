@@ -11,3 +11,10 @@ public class nodo {
     } 
    
 }
+
+class nodoS{
+    
+    String Transacción;
+    nodoS next;
+    
+}

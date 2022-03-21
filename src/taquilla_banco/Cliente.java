@@ -24,12 +24,9 @@ class Cliente {
         return this.nombre+" "+this.apellido;
     }
     
-    String getPrioridad(){
-        if (this.prioridad){
-           return "Sí";    
-        }else{
-            return "No";
-        }
+    Boolean getPrioridad(){
+        return this.prioridad;
+        
         
     }
     
