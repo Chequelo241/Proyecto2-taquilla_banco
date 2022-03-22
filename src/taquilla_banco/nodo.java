@@ -10,4 +10,15 @@ public class nodo {
         this.cliente = in;
     } 
    
+         
+}
+
+class nodoS{
+    
+    String dato;
+    nodo next;
+    
+    public nodoS(String in){
+        this.dato = in;
+    }
 }

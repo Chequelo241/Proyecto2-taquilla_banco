@@ -19,8 +19,7 @@ public class Pila {
         }
     }
 
-    
-    nodo listapop(){
+    nodo pop(){
         if(isEmpty()){
              nodo aux = top;
              top = top.next;

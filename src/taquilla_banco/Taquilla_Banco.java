@@ -22,7 +22,11 @@ public class Taquilla_Banco {
         
         c.enqueueClientes("C:\\Users\\Usuario\\Documents\\Proyectos-Programas\\Clientes.txt");
         
-        c.dequeuePrint("C:\\Users\\Usuario\\Documents\\Proyectos-Programas\\ClientesAtendidos.txt");
+        System.out.println(c.dequeue());
+        System.out.println(c.dequeue());
+        System.out.println(c.dequeue());
+        System.out.println(c.dequeue());
+        
         
 
          /*   switch(Opc){

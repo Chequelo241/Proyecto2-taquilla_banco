@@ -44,10 +44,11 @@ public class Cola {
     
     public void  enqueueClientes(String fuente) throws IOException{
         String[] clientes = Documento.leer(fuente).split("\n");
+        
         String[] clientesdatos;
         for (String i:clientes){
             clientesdatos = i.split(" ");
-            enqueue(new nodo(new Cliente(clientesdatos[0],clientesdatos[1],clientesdatos[2].equalsIgnoreCase("Si"),clientesdatos[3])));
+            enqueue(new nodo(new Cliente(clientesdatos[0],clientesdatos[1],clientesdatos[2],clientesdatos[3])));
         }
     }
     
