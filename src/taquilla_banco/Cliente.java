@@ -24,8 +24,14 @@ class Cliente {
         return this.nombre+" "+this.apellido;
     }
     
+<<<<<<< HEAD
     String getPrioridad(){
  return this.prioridad;
+=======
+    Boolean getPrioridad(){
+        return this.prioridad;
+        
+>>>>>>> origin/EZE
         
     }
     

@@ -13,12 +13,4 @@ public class nodo {
          
 }
 
-class nodoS{
-    
-    String dato;
-    nodo next;
-    
-    public nodoS(String in){
-        this.dato = in;
-    }
-}
+

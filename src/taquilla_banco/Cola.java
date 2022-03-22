@@ -11,12 +11,12 @@ public class Cola {
         return Front == null;
     }
     
-    String getFront(){
+    nodo getFront(){
         nodo aux = null;
         if (this.Front != null){
-            return "El primero en la cola es: "+Front.cliente.getName();
+            return Front;
         }else{
-            return "La cola está vacía";
+            return null;
         }   
     }
     
@@ -31,14 +31,15 @@ public class Cola {
         
     }
     
-    String dequeue(){
-        if (this.Front == null){
+    
+    nodo dequeue(){
+        if (isEmpty()){
             return null;
         }else{
             nodo aux = this.Front;
             this.Front = this.Front.next;
             aux.next = null;
-            return aux.cliente.getName();
+            return aux;
         }
     }
     
@@ -53,20 +54,73 @@ public class Cola {
     }
     
     public void dequeuePrint(String direccion) throws IOException{
-        String doc = dequeue();
+        String doc = dequeue().cliente.getDat();
         while(!isEmpty()){
-            doc +="\n"+dequeue();}
+            doc +="\n"+dequeue().cliente.getDat();}
+        System.out.println( doc);//esto imprime toda la lista que se desencolo.
         Documento.escribir(doc, direccion);
     }
     
+     String dequeuePrioridad() {
+
+            Cola Aux= new Cola();
+            nodo aux = Front;
+            
+            while(!isEmpty()){
+                if(aux.cliente.getPrioridad()){
+                  return dequeue().cliente.getName(); 
+               }else {
+                   aux = aux.next;
+               }
+            }
+            
+            while(!Aux.isEmpty()){
+              enqueue(Aux.dequeue());  
+            }
+                
+        return null;    
+    }
+     
+    nodo Prioridad() {
+
+        if (this.Front != null) {
+            nodo aux = this.Front;
+            while (aux.next != null) {
+                if (aux.cliente.getPrioridad()) {
+                    nodo aux2 = aux.next;
+                    aux.next = aux.next.next;
+                    aux2 = this.Front;
+                    this.Front = aux2;
+                    return aux;
+                }
+                aux = aux.next;
+            }
+        } 
+            return null;
+    }
+     
+     
+   /* void printf() { //arreglar esto
+        if (this.Front == null) {
+            System.out.println("");
+            System.out.println("\t aqui pasa algo raro >:c");
+        } else {
+            nodo aux = this.Front;
+            String doc = dequeue();
+            int i = 0;
+
+            System.out.println( doc);//arreglar esto
+            while (aux.next != null) {
+                aux = aux.next;
+                System.out.println( doc);//arreglar esto
+            }
+        }
+    }//arreglar esto*/
 }
 
 
 
-
-
-
-/*class cola {
+  /*class cola {
 
     class nodo {
 
@@ -109,41 +163,6 @@ public class Cola {
         }
     }
 
-    void printf() {
-        if (this.front == null) {
-            System.out.println("");
-            System.out.println("\t aqui pasa algo raro >:c");
-        } else {
-            nodo aux = this.front;
-            int i = 0;
-
-            System.out.println("\tNro " + (i + 1) + "- " + aux.Nom + " " + aux.Oper + " " + aux.Prioridad);
-            while (aux.nex != null) {
-                i++;
-                aux = aux.nex;
-                System.out.println("\tNro " + (i + 1) + "- " + aux.Nom + " " + aux.Oper + " " + aux.Prioridad);
-            }
-        }
-
-    }
-
-    void Prioridad() {
-
-        if (this.front != null) {
-            nodo aux = this.front;
-            while (aux.nex != null) {
-                if (aux.nex.Prioridad) {
-                    nodo aux2 = aux.nex;
-                    aux.nex = aux.nex.nex;
-                    aux2.nex = this.front;
-                    this.front = aux2;
-                }
-                aux = aux.nex;
-            }
-        } else {
-            System.out.println("");
-            System.out.println("\t Alguien quito lo que se iba a encolar :/");
-        }
-    }
+    
 }
 */
