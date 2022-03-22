@@ -8,9 +8,15 @@ public class nodo {
     
     public nodo(Cliente in){
         this.cliente = in;
-    } 
-   
-         
+    }    
 }
 
+class nodoP{
+   Cliente cliente;
+   nodoP Down;
+   
+   public nodoP(Cliente in){
+       this.cliente = in;
+   }
+}
 

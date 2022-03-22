@@ -32,7 +32,7 @@ class Cliente {
         }else{
          a = "No";
         }
-        return this.nombre+" "+this.apellido+" Discapacidad/Adulto Mayor: "+a+" Operaciones: "+getOperaciones();
+        return this.nombre+" "+this.apellido+" | Prioridad: "+a+" | Transacciones: "+getOperaciones();
     }
     
    String getName(){

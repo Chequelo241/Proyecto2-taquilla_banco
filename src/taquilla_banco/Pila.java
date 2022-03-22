@@ -5,30 +5,29 @@ import java.io.IOException;
 
 public class Pila {
         
-    nodo top;
+    nodoP top;
     
     public boolean isEmpty(){   
       return top==null;  
         
     }
-    void push (nodo in){
+    void push (nodoP in){
         if (isEmpty()){
-            this.top = in;      
+            top = in;      
         }else{
-            nodo topAux = top;
+            nodoP topAux = top;
             top = in;
-            top.next = topAux;
+            top.Down = topAux;
         }
     }
 
-    nodo pop(){
-        if(isEmpty()){
-             nodo aux = top;
-             top = top.next;
-             aux.next = null;
+    nodoP pop(){
+        if(!isEmpty()){
+             nodoP aux = top;
+             top = top.Down;
+             aux.Down = null;
              return aux;   
         }else{
-            System.out.println("Pila Vacía");
             return null;      
             
         }
@@ -39,11 +38,18 @@ public class Pila {
          System.out.println(top.cliente.getName());
     }
     
-    void popPrint(String direccion) throws IOException{
-        String doc = pop().cliente.getDat();
-        while(!isEmpty()){
-            doc+="\n"+pop();}
-        Documento.escribir(doc, direccion);
+    void popPrint(String direccion) throws IOException{//se hace un llamado al pop y se imprime en un docuento.
+        if (!isEmpty()){
+        String dop = pop().cliente.getDat();
+        
+        while (!isEmpty()){
+            dop += "\n" + pop().cliente.getDat();
+        }
+         
+        System.out.println(dop);
+        Documento.escribir(dop, direccion);
+        }
+       
     }
 }
     

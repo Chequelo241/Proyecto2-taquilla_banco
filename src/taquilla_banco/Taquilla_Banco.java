@@ -1,4 +1,4 @@
-/* 
+/*
     EZEQUIEL RODRIGUEZ C.I 30.008.226
     ALBERT HENRIQUEZ C.I
     LUIS SUAREZ C.I 
@@ -15,15 +15,26 @@ public class Taquilla_Banco {
         
         String lista;
         Cola c = new Cola();
+        Pila a = new Pila();
         String Opc;
         Opc="";
         
         
        c.enqueueClientes("Clientes.in");
-       System.out.println(c.Prioridad().cliente.getName());
-       System.out.println(c.getFront().cliente.getOperaciones());
-       c.dequeuePrint("ClientesAtendidos.in");
+       if (!c.isEmpty()){
+          while(!c.isEmpty()){
+              
+              a.push(new nodoP(c.dequeue().cliente));
+          }              
+           }
+       if (!a.isEmpty()){
+           a.popPrint("ClientesPendientes.in");
+       }
+       /*c.dequeuePrint("ClientesAtendidos.in");
        
+       System.out.println(c.dequeuePrioridad().cliente.getName());
+       System.out.println(c.getFront().cliente.getOperaciones());*/
+
                
                
    

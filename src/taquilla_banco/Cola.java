@@ -43,7 +43,7 @@ public class Cola {
         }
     }
     
-    public void  enqueueClientes(String fuente) throws IOException{
+    public void  enqueueClientes(String fuente) throws IOException{//lee un documento y encola lo quer  leyo.
         String[] clientes = Documento.leer(fuente).split("\n");
         
         String[] clientesdatos;
@@ -55,7 +55,7 @@ public class Cola {
         }
     }
     
-    public void dequeuePrint(String direccion) throws IOException{
+    public void dequeuePrint(String direccion) throws IOException{//desencolar e imprimir en un documento.
         String doc = dequeue().cliente.getInfo();
         while(!isEmpty()){
             doc +="\n"+dequeue().cliente.getInfo();}
@@ -63,27 +63,7 @@ public class Cola {
         Documento.escribir(doc, direccion);
     }
     
-     String dequeuePrioridad() {
-
-            Cola Aux= new Cola();
-            nodo aux = Front;
-            
-            while(!isEmpty()){
-                if(aux.cliente.getPrioridad()){
-                  return dequeue().cliente.getName(); 
-               }else {
-                   aux = aux.next;
-               }
-            }
-            
-            while(!Aux.isEmpty()){
-              enqueue(Aux.dequeue());  
-            }
-                
-        return null;    
-    }
-     
-    nodo Prioridad() {
+    nodo dequeuePrioridad() {//Desencola un cliente cuando tiene piroridad para ser "atendido" primero.
 
         if (this.Front != null) {
             nodo aux = this.Front;
