@@ -47,16 +47,18 @@ public class Cola {
         String[] clientes = Documento.leer(fuente).split("\n");
         
         String[] clientesdatos;
+        String[] operaciones;
         for (String i:clientes){
             clientesdatos = i.split(" ");
-            enqueue(new nodo(new Cliente(clientesdatos[0],clientesdatos[1],clientesdatos[2],clientesdatos[3])));
+            operaciones = clientesdatos[3].split(",");
+            enqueue(new nodo(new Cliente(clientesdatos[0],clientesdatos[1],clientesdatos[2].equalsIgnoreCase("si"),operaciones)));
         }
     }
     
     public void dequeuePrint(String direccion) throws IOException{
-        String doc = dequeue().cliente.getDat();
+        String doc = dequeue().cliente.getInfo();
         while(!isEmpty()){
-            doc +="\n"+dequeue().cliente.getDat();}
+            doc +="\n"+dequeue().cliente.getInfo();}
         System.out.println( doc);//esto imprime toda la lista que se desencolo.
         Documento.escribir(doc, direccion);
     }

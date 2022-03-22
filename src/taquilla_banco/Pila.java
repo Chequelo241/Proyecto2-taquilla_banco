@@ -1,6 +1,8 @@
 
 package taquilla_banco;
 
+import java.io.IOException;
+
 public class Pila {
         
     nodo top;
@@ -37,6 +39,12 @@ public class Pila {
          System.out.println(top.cliente.getName());
     }
     
+    void popPrint(String direccion) throws IOException{
+        String doc = pop().cliente.getDat();
+        while(!isEmpty()){
+            doc+="\n"+pop();}
+        Documento.escribir(doc, direccion);
+    }
 }
     
 

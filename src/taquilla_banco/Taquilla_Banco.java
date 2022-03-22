@@ -17,19 +17,12 @@ public class Taquilla_Banco {
         Cola c = new Cola();
         String Opc;
         Opc="";
-<<<<<<< HEAD
         
-        c.enqueueClientes("C:\\Users\\Usuario\\Documents\\Proyectos-Programas\\Clientes.txt");
         
-        System.out.println(c.dequeue());
-        System.out.println(c.dequeue());
-        System.out.println(c.dequeue());
-        System.out.println(c.dequeue());
-        
-=======
        c.enqueueClientes("Clientes.in");
        System.out.println(c.Prioridad().cliente.getName());
-       System.out.println(c.dequeue().cliente.getName());
+       System.out.println(c.getFront().cliente.getOperaciones());
+       c.dequeuePrint("ClientesAtendidos.in");
        
                
                
@@ -44,7 +37,6 @@ public class Taquilla_Banco {
             Opc= sc.nextLine();
         }while(!Opc.equals("N"));*/
        
->>>>>>> origin/EZE
         
 
          /*   switch(Opc){
