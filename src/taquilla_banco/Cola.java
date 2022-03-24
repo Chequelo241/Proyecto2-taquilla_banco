@@ -44,6 +44,7 @@ public class Cola {
     }
     
     public void  enqueueClientes(String fuente) throws IOException{//lee un documento y encola lo quer  leyo.
+        if (Documento.leer(fuente)!= null){
         String[] clientes = Documento.leer(fuente).split("\n");
         
         String[] clientesdatos;
@@ -52,6 +53,7 @@ public class Cola {
             clientesdatos = i.split(" ");
             operaciones = clientesdatos[3].split(",");
             enqueue(new nodo(new Cliente(clientesdatos[0],clientesdatos[1],clientesdatos[2].equalsIgnoreCase("si"),operaciones)));
+        }
         }
     }
     
@@ -80,71 +82,4 @@ public class Cola {
         } 
             return null;
     }
-     
-     
-   /* void printf() { //arreglar esto
-        if (this.Front == null) {
-            System.out.println("");
-            System.out.println("\t aqui pasa algo raro >:c");
-        } else {
-            nodo aux = this.Front;
-            String doc = dequeue();
-            int i = 0;
-
-            System.out.println( doc);//arreglar esto
-            while (aux.next != null) {
-                aux = aux.next;
-                System.out.println( doc);//arreglar esto
-            }
-        }
-    }//arreglar esto*/
 }
-
-
-
-  /*class cola {
-
-    class nodo {
-
-        String Nom;
-        String Oper;
-        Boolean Prioridad;
-        nodo nex;
-
-        nodo(String nombre, String transaccion, Boolean Prioridad) {
-
-            this.Nom = nombre;
-            this.Oper = transaccion;
-            this.Prioridad = Prioridad;
-        }
-    }
-
-    nodo front = null;
-    nodo rear = null;
-
-    void enqueue(String Nom, String Oper, boolean Prioridad) {
-        nodo nodo = new nodo(Nom, Oper, Prioridad);
-
-        if (this.front == null) {
-            this.front = nodo;
-            this.rear = nodo;
-        } else {
-            this.rear.nex = nodo;
-            this.rear = this.rear.nex;
-        }
-    }
-
-    nodo dequeue() {
-        if (this.front != null) {
-            nodo aux = this.front;
-            this.front = this.front.nex;
-            aux.nex = null;
-            return aux;
-        } else {
-            return null;
-        }
-    }
-
-    
-}
-*/
