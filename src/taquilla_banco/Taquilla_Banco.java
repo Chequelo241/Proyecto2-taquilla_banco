@@ -17,7 +17,7 @@ public class Taquilla_Banco {
     public static void main(String[] args) throws IOException {
 
         String Salir, Opc;
-        
+
         LocalDate fecha = LocalDate.parse(Documento.leer("fecha.in"));
         LocalTime horaInicio = LocalTime.of(8, 0);
         LocalTime horaCierre = LocalTime.of(15, 30);
@@ -25,91 +25,139 @@ public class Taquilla_Banco {
 
         Cola Clientes = new Cola();
         Cola Pendientes = new Cola();
-        Documento D= new Documento();
+        Documento D = new Documento();
         Pila Atendidos = new Pila();
 
-        Pendientes.enqueueClientes("ClientesPendientes.in");
+        Pendientes.enqueueClientes("Clientes_Pendientes.in");
+        D.Eliminar("Clientes_Pendientes.in");
         Clientes.enqueueClientes("Clientes.in");
 
-        System.out.println("------------------BIENVENIDO-------------------------");
-        System.out.println();
-
         do {
-            System.out.println("Ya son las " + horaInicio + ", presiona 1 para comenzar");
+            System.out.println("-------------------BIENVENIDO-------------------------");
+            System.out.println();
+
+            System.out.println("");
+            System.out.print("Hoy es: " + fecha + ". Ya son las " + horaInicio + ", presiona: \n"
+                    + "1 para comenzar.\n"
+                    + "2 para salir. ");
             Opc = sc.nextLine();
 
-            if (Opc.equals("1")) {
-                if (!Pendientes.isEmpty()) {
-                    while (!Pendientes.isEmpty() || horaActual.isAfter(horaCierre)) {
-                        Cliente y = Pendientes.dequeue().cliente;
-                        System.out.print("Se atiende a " + y.getName() + " a las " + horaActual);
-                        for (String i : y.getOperacionesArray()) {
+            switch (Opc) {
+                case "1":
+                    if (!Pendientes.isEmpty()) {
+                        System.out.println("");
+                        while (!Pendientes.isEmpty() || horaActual.isAfter(horaCierre)) {
+                            int atendidos = 0;
+                            Cliente y;
+                            if (atendidos <5) {
+                                y = Pendientes.dequeue().cliente;
+                                atendidos++;
+                            } else {
+                                y = Pendientes.dequeuePrioridad().cliente;
+                                atendidos = 0;
+                            }
+                            System.out.println("\tSe atiende a " + y.getName() + " a las " + horaActual);
+                            for (String i : y.getOperacionesArray()) {
 
-                            switch (i) {
+                                switch (i) {
 
-                                case "retiro":
-                                    horaActual = horaActual.plusMinutes(4);
-                                    break;
-                                case "deposito":
-                                    horaActual = horaActual.plusMinutes(3);
-                                    break;
-                                case "consulta/movimientos":
-                                    horaActual = horaActual.plusMinutes(1);
-                                    horaActual = horaActual.plusSeconds(30);
-                                    break;
-                                case "actualizacion/libreta":
-                                    horaActual = horaActual.plusMinutes(5);
-                                    break;
-                                case "pago/Servicios":
-                                    horaActual = horaActual.plusMinutes(2);
-                                    break;
+                                    case "retiro":
+                                        horaActual = horaActual.plusMinutes(4);
+                                        break;
+                                    case "deposito":
+                                        horaActual = horaActual.plusMinutes(3);
+                                        break;
+                                    case "consulta/movimientos":
+                                        horaActual = horaActual.plusMinutes(1);
+                                        horaActual = horaActual.plusSeconds(30);
+                                        break;
+                                    case "actualizacion/libreta":
+                                        horaActual = horaActual.plusMinutes(5);
+                                        break;
+                                    case "pago/Servicios":
+                                        horaActual = horaActual.plusMinutes(2);
+                                        break;
+                                }
+
+                            }
+                            System.out.println(". Efectuó: " + y.getOperaciones());
+                            Atendidos.push(new nodoP(y));
+                        }
+                    } else if (!Clientes.isEmpty()) {
+                        
+                        System.out.println("");
+                        while (!Clientes.isEmpty() || horaActual.isAfter(horaCierre)) {
+                            int atendidos = 0;
+                            Cliente y;
+                            if (atendidos < 5) {
+                                y = Clientes.dequeue().cliente;
+                                atendidos++;
+                            } else {
+                                y = Clientes.dequeuePrioridad().cliente;
+                                atendidos = 0;
                             }
 
-                        }
-                        System.out.println(". Efectuó: " + y.getOperaciones());
-                        Atendidos.push(new nodoP(y));
-                    }
-                } else if (!Clientes.isEmpty()) {
-                    D.Eliminar("ClientesPendientes.in");
-                    while (!Clientes.isEmpty() || horaActual.isAfter(horaCierre)) {
-                        Cliente y = Clientes.dequeue().cliente;
-                        System.out.print("Se atiende a " + y.getName() + " a las " + horaActual);
+                            System.out.print("\tSe atiende a " + y.getName() + " a las " + horaActual);
 
-                        for (String i : y.getOperacionesArray()) {
+                            for (String i : y.getOperacionesArray()) {
 
-                            switch (i) {
+                                switch (i) {
 
-                                case "retiro":
-                                    horaActual = horaActual.plusMinutes(4);
-                                    break;
-                                case "deposito":
-                                    horaActual = horaActual.plusMinutes(3);
-                                    break;
-                                case "consulta/movimientos":
-                                    horaActual = horaActual.plusMinutes(1);
-                                    horaActual = horaActual.plusSeconds(30);
-                                    break;
-                                case "actualizacion/libreta":
-                                    horaActual = horaActual.plusMinutes(5);
-                                    break;
-                                case "pago/Servicios":
-                                    horaActual = horaActual.plusMinutes(2);
-                                    break;
+                                    case "retiro":
+                                        horaActual = horaActual.plusMinutes(4);
+                                        break;
+                                    case "deposito":
+                                        horaActual = horaActual.plusMinutes(3);
+                                        break;
+                                    case "consulta/movimientos":
+                                        horaActual = horaActual.plusMinutes(1);
+                                        horaActual = horaActual.plusSeconds(30);
+                                        break;
+                                    case "actualizacion/libreta":
+                                        horaActual = horaActual.plusMinutes(5);
+                                        break;
+                                    case "pago/Servicios":
+                                        horaActual = horaActual.plusMinutes(2);
+                                        break;
+                                }
+
                             }
 
+                            System.out.println(". Efectuó: " + y.getOperaciones());
+                            Atendidos.push(new nodoP(y));
                         }
-
-                        System.out.println(". Efectuó: " + y.getOperaciones());
-                        Atendidos.push(new nodoP(y));
                     }
-                }
-            } else{
-                System.out.println("Veo que no deseas iniciar....");
+                    break;
+                case "2":
+
+                    break;
+                default:
+                    System.out.println("opcion no valida");
+                    break;
             }
-            
-            System.out.println("Desea salir? S/N");
-            Salir = sc.nextLine();
-        } while (!Salir.equals("S"));
+            if (!Clientes.isEmpty()) {
+                Clientes.dequeuePrint("Clientes_Pendientes.in");
+            }
 
+            if (!Atendidos.isEmpty()) {
+                System.out.println("");
+                System.out.println("Los Clientes atendidos hoy fueron:");
+                System.out.println("");
+                Atendidos.popPrint("Taquilla " + fecha.toString() + ".log");
+            }
+
+            fecha = fecha.plusDays(1);
+            Documento.escribir(fecha.toString(), "fecha.in");
+
+            System.out.println("");
+            System.out.print("Cerrar el Programa? S/ N: ");
+            Salir = sc.nextLine();
+
+            if (Salir.equals("N")) {
+                System.out.println("Pasando al siguiente dia...");
+                System.out.println("");
+            }
+
+        } while (!Salir.equals("S"));
     }
 }
