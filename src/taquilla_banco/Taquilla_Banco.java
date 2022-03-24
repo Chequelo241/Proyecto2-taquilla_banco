@@ -28,7 +28,7 @@ public class Taquilla_Banco {
             LocalTime horaInicio = LocalTime.of(8, 0);
             LocalTime horaCierre = LocalTime.of(15, 30);
             LocalTime horaActual = horaInicio;
-            
+
             Pendientes.enqueueClientes("ClientesPendientes.in");
             D.Eliminar("ClientesPendientes.in");
             Clientes.enqueueClientes("Clientes.in");
@@ -47,59 +47,30 @@ public class Taquilla_Banco {
 
             switch (Opc) {
                 case "1":
-                    if (!Pendientes.isEmpty()) {
-                        System.out.println("");
-                        while (!Pendientes.isEmpty() && horaActual.isBefore(horaCierre)) {
-                            int atendidos = 0;
-                            Cliente y;
-                            if (atendidos < 5) {
-                                y = Pendientes.dequeue().cliente;
-                                atendidos++;
-                            } else {
-                                y = Pendientes.dequeuePrioridad().cliente;
+
+                    while (!Clientes.isEmpty() && horaActual.isBefore(horaCierre)) {
+                        Cliente y = null;
+                        int atendidos = 4;
+                        if (!Pendientes.isEmpty()) {
+                            System.out.println("");
+                            if (atendidos > 6) {
+                                Pendientes.dequeuePrioridad();
                                 atendidos = 0;
                             }
-                            System.out.print("\tSe atiende a " + y.getName() + " a las [" + horaActual + "]");
-                            for (String i : y.getOperacionesArray()) {
+                            y = Pendientes.dequeue().cliente;
+                            atendidos++;
 
-                                switch (i) {
-
-                                    case "retiro":
-                                        horaActual = horaActual.plusMinutes(4);
-                                        break;
-                                    case "deposito":
-                                        horaActual = horaActual.plusMinutes(3);
-                                        break;
-                                    case "consulta/movimientos":
-                                        horaActual = horaActual.plusMinutes(1);
-                                        horaActual = horaActual.plusSeconds(30);
-                                        break;
-                                    case "actualizacion/libreta":
-                                        horaActual = horaActual.plusMinutes(5);
-                                        break;
-                                    case "pago/Servicios":
-                                        horaActual = horaActual.plusMinutes(2);
-                                        break;
-                                }
-
+                        } else if (!Clientes.isEmpty()) {
+                            System.out.println("");
+                            if (atendidos > 6) {
+                                Clientes.dequeuePrioridad();
+                                atendidos = 0;
                             }
-                            System.out.println(" ----> Efectuó: " + y.getOperaciones());
-                            Atendidos.push(new nodoP(y));
+                            y = Clientes.dequeue().cliente;
+                            atendidos++;
+
                         }
-                    } else if (!Clientes.isEmpty()) {
-
-                        System.out.println("");
-                        while (!Clientes.isEmpty() && horaActual.isBefore(horaCierre)) {
-                            int atendidos = 0;
-                            Cliente y;
-                            if (atendidos < 5) {
-                                y = Clientes.dequeue().cliente;
-                                atendidos++;
-                            } else {
-                                y = Clientes.dequeuePrioridad().cliente;
-                                atendidos = 0;
-                            }
-
+                        if (y != null) {
                             System.out.print("\tSe atiende a: " + y.getName() + " a las [" + horaActual + "]");
 
                             for (String i : y.getOperacionesArray()) {
@@ -130,6 +101,7 @@ public class Taquilla_Banco {
                             Atendidos.push(new nodoP(y));
                         }
                     }
+
                 case "2":
 
                     break;

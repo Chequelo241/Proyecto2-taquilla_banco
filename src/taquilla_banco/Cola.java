@@ -64,11 +64,11 @@ public class Cola {
         Documento.escribir(doc, direccion);
     }
     
-    nodo dequeuePrioridad() {//Desencola un cliente cuando tiene piroridad para ser "atendido" primero.
+    void dequeuePrioridad() {//Desencola un cliente cuando tiene piroridad para ser "atendido" primero.
 
         if (this.Front != null) {
             nodo aux = this.Front;
-            while (aux.next != null) {
+        while (aux.next != null) {
                 if (aux.next.cliente.getPrioridad()) {
                     nodo aux2 = aux.next;
                     aux.next = aux.next.next;
@@ -77,9 +77,9 @@ public class Cola {
                     
                 }
                 aux = aux.next;
-                return aux;
+                
             }
         } 
-            return null;
+            
     }
 }
