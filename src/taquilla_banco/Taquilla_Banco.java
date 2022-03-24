@@ -28,6 +28,7 @@ public class Taquilla_Banco {
             LocalTime horaInicio = LocalTime.of(8, 0);
             LocalTime horaCierre = LocalTime.of(15, 30);
             LocalTime horaActual = horaInicio;
+            
             Pendientes.enqueueClientes("ClientesPendientes.in");
             D.Eliminar("ClientesPendientes.in");
             Clientes.enqueueClientes("Clientes.in");
@@ -58,7 +59,7 @@ public class Taquilla_Banco {
                                 y = Pendientes.dequeuePrioridad().cliente;
                                 atendidos = 0;
                             }
-                            System.out.println("Se atiende a " + y.getName() + " a las [" + horaActual + "]");
+                            System.out.print("\tSe atiende a " + y.getName() + " a las [" + horaActual + "]");
                             for (String i : y.getOperacionesArray()) {
 
                                 switch (i) {
@@ -82,7 +83,7 @@ public class Taquilla_Banco {
                                 }
 
                             }
-                            System.out.println(". Efectuó: " + y.getOperaciones());
+                            System.out.println(" ----> Efectuó: " + y.getOperaciones());
                             Atendidos.push(new nodoP(y));
                         }
                     } else if (!Clientes.isEmpty()) {
