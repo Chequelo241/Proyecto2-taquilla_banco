@@ -18,22 +18,20 @@ public class Taquilla_Banco {
 
         String Salir, Opc;
 
-        LocalDate fecha = LocalDate.parse(Documento.leer("fecha.in"));
-        LocalTime horaInicio = LocalTime.of(8, 0);
-        LocalTime horaCierre = LocalTime.of(15, 30);
-        LocalTime horaActual = horaInicio;
-
         Cola Clientes = new Cola();
         Cola Pendientes = new Cola();
         Documento D = new Documento();
         Pila Atendidos = new Pila();
 
         do {
+            LocalDate fecha = LocalDate.parse(Documento.leer("fecha.in"));
+            LocalTime horaInicio = LocalTime.of(8, 0);
+            LocalTime horaCierre = LocalTime.of(15, 30);
+            LocalTime horaActual = horaInicio;
             Pendientes.enqueueClientes("ClientesPendientes.in");
             D.Eliminar("ClientesPendientes.in");
             Clientes.enqueueClientes("Clientes.in");
-            
-            
+
             Salir = null;
             System.out.println("\t|-----------------------BIENVENIDO-----------------------|");
             System.out.println();
@@ -42,11 +40,9 @@ public class Taquilla_Banco {
             System.out.print("Hoy es: " + fecha + ". Ya son las [" + horaInicio + "], presiona: \n\n"
                     + "1 : Para comenzar.\n"
                     + "2 : Para salir.\n\n");
-            
+
             System.out.print("[R]-----------> ");
             Opc = sc.nextLine();
-            
-            
 
             switch (Opc) {
                 case "1":
@@ -62,7 +58,7 @@ public class Taquilla_Banco {
                                 y = Pendientes.dequeuePrioridad().cliente;
                                 atendidos = 0;
                             }
-                            System.out.println("Se atiende a " + y.getName() + " a las " + horaActual);
+                            System.out.println("Se atiende a " + y.getName() + " a las [" + horaActual + "]");
                             for (String i : y.getOperacionesArray()) {
 
                                 switch (i) {
@@ -103,7 +99,7 @@ public class Taquilla_Banco {
                                 atendidos = 0;
                             }
 
-                            System.out.print("\tSe atiende a: " + y.getName() + " a las [" + horaActual+"]");
+                            System.out.print("\tSe atiende a: " + y.getName() + " a las [" + horaActual + "]");
 
                             for (String i : y.getOperacionesArray()) {
 

@@ -20,7 +20,7 @@ public class Documento {
             String datos = linea;
 
             while ((linea = br.readLine()) != null) {
-                datos += "\n" + linea;
+                datos += "\n" + linea;//imprimir linea mas salto de linea
             }
             return datos;
         }
