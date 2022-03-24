@@ -46,7 +46,6 @@ public class Pila {
             dop += "\n" + pop().cliente.getDat();
         }
          
-        System.out.println(dop);
         Documento.escribir(dop, direccion);
         }
        

@@ -61,7 +61,6 @@ public class Cola {
         String doc = dequeue().cliente.getInfo();
         while(!isEmpty()){
             doc +="\n"+dequeue().cliente.getInfo();}
-        System.out.println( doc);//esto imprime toda la lista que se desencolo.
         Documento.escribir(doc, direccion);
     }
     
