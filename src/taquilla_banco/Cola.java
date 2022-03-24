@@ -69,14 +69,15 @@ public class Cola {
         if (this.Front != null) {
             nodo aux = this.Front;
             while (aux.next != null) {
-                if (aux.cliente.getPrioridad()) {
+                if (aux.next.cliente.getPrioridad()) {
                     nodo aux2 = aux.next;
                     aux.next = aux.next.next;
-                    aux2 = this.Front;
+                    aux2.next = this.Front;
                     this.Front = aux2;
-                    return aux;
+                    
                 }
                 aux = aux.next;
+                return aux;
             }
         } 
             return null;

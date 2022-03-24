@@ -45,6 +45,8 @@ public class Taquilla_Banco {
             
             System.out.print("[R]-----------> ");
             Opc = sc.nextLine();
+            
+            
 
             switch (Opc) {
                 case "1":
