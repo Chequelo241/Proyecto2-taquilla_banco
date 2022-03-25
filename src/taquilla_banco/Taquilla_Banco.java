@@ -15,24 +15,26 @@ public class Taquilla_Banco {
     static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
+        
+        
 
         String Salir, Opc;
-
+        do{
         Cola Clientes = new Cola();
         Cola Pendientes = new Cola();
         Documento D = new Documento();
         Pila Atendidos = new Pila();
 
-        do {
+        
             LocalDate fecha = LocalDate.parse(Documento.leer("fecha.in"));
             LocalTime horaInicio = LocalTime.of(8, 0);
             LocalTime horaCierre = LocalTime.of(15, 30);
             LocalTime horaActual = horaInicio;
-
+            
             Pendientes.enqueueClientes("ClientesPendientes.in");
             D.Eliminar("ClientesPendientes.in");
             Clientes.enqueueClientes("Clientes.in");
-
+           
             Salir = null;
             System.out.println("\t|-----------------------BIENVENIDO-----------------------|");
             System.out.println();
@@ -47,32 +49,35 @@ public class Taquilla_Banco {
 
             switch (Opc) {
                 case "1":
-
-                    while (!Clientes.isEmpty() && horaActual.isBefore(horaCierre)) {
-                        Cliente y = null;
-                        int atendidos = 4;
-                        if (!Pendientes.isEmpty()) {
-                            System.out.println("");
-                            if (atendidos > 6) {
+                   int atendidos = 0;
+                   Cliente y = null;
+                while(!Clientes.isEmpty() && horaActual.isBefore(horaCierre)){
+                    
+                    if (!Pendientes.isEmpty()) {
+                        System.out.println("");
+                            if (atendidos > 4) {
                                 Pendientes.dequeuePrioridad();
-                                atendidos = 0;
+                                atendidos = 0;                            
                             }
                             y = Pendientes.dequeue().cliente;
                             atendidos++;
-
-                        } else if (!Clientes.isEmpty()) {
-                            System.out.println("");
-                            if (atendidos > 6) {
+                                 
+                    } 
+                    else if (!Clientes.isEmpty() && Pendientes.isEmpty()) {
+                        System.out.println("");
+                            if (atendidos > 4) {
                                 Clientes.dequeuePrioridad();
                                 atendidos = 0;
                             }
                             y = Clientes.dequeue().cliente;
                             atendidos++;
-
-                        }
-                        if (y != null) {
-                            System.out.print("\tSe atiende a: " + y.getName() + " a las [" + horaActual + "]");
-
+                                
+                        
+                    } 
+                         if (y!=null){
+                           
+                             System.out.print("\tSe atiende a: " + y.getName() + " a las [" + horaActual + "] ");
+                             
                             for (String i : y.getOperacionesArray()) {
 
                                 switch (i) {
@@ -98,10 +103,12 @@ public class Taquilla_Banco {
                             }
 
                             System.out.println(" ----> Efectuó: " + y.getOperaciones());
-                            Atendidos.push(new nodoP(y));
-                        }
-                    }
-
+                            Atendidos.push(new nodoP(y));} 
+                            }
+                            
+                            break;
+                        
+                    
                 case "2":
 
                     break;
