@@ -55,7 +55,7 @@ public class Taquilla_Banco {
                     
                     if (!Pendientes.isEmpty()) {
                         System.out.println("");
-                            if (atendidos > 4) {
+                            if (atendidos > 3) {
                                 Pendientes.dequeuePrioridad();
                                 atendidos = 0;                            
                             }
@@ -65,7 +65,7 @@ public class Taquilla_Banco {
                     } 
                     else if (!Clientes.isEmpty() && Pendientes.isEmpty()) {
                         System.out.println("");
-                            if (atendidos > 4) {
+                            if (atendidos > 3) {
                                 Clientes.dequeuePrioridad();
                                 atendidos = 0;
                             }
